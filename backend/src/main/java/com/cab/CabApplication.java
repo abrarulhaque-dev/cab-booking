@@ -1,0 +1,21 @@
+package com.cab;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@SpringBootApplication
+public class CabApplication {
+    public static void main(String[] args) { SpringApplication.run(CabApplication.class, args); }
+
+    @Bean
+    WebMvcConfigurer cors() {
+        return new WebMvcConfigurer() {
+            public void addCorsMappings(CorsRegistry r) {
+                r.addMapping("/api/**").allowedOrigins("http://localhost:5173").allowedMethods("*").allowedHeaders("*");
+            }
+        };
+    }
+}
